@@ -1,18 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Card App</title>
-  </head>
-  <body>
-    <section class="app">
+</head>
 
-        <h1 class="text-3xl text-sky-400 font-bold ">Hello!</h1>
+<body>
+  <!-- bg-pink-500/50 border-pink-500/10 shadow-pink-500/25 -->
+<!-- bg-blue-500/50 border-blue-500/10 shadow-blue-500/25 -->
+<!-- bg-green-500/50 border-green-500/10 shadow-green-500/25 -->
+<!-- bg-red-500/50 border-red-500/10 shadow-red-500/25 -->
+<!-- bg-yellow-500/50 border-yellow-500/10 shadow-yellow-500/25 -->
+<!-- bg-purple-500/50 border-purple-500/10 shadow-purple-500/25 -->
+<!-- bg-orange-500/50 border-orange-500/10 shadow-orange-500/25 -->
+<!-- bg-indigo-500/50 border-indigo-500/10 shadow-indigo-500/25 -->
+<!-- bg-teal-500/50 border-teal-500/10 shadow-teal-500/25 -->
+<!-- bg-lime-500/50 border-lime-500/10 shadow-lime-500/25 -->
+ 
+    <div class="flex flex-col w-full">
+        <section class="app flex flex-col items-center justify-center">
+            <h1>Card</h1>
+            <div class="card-container"></div>
+        </section>
+        <section class="flex flex-col items-center justify-center ">
+            <button type="button" class="colorBtn text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cambiar color</button>
+    
+        </section>
+    </div>
 
-        <p class="data"></p>
-    </section>
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
+
 </html>
