@@ -1,40 +1,128 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Card App</title>
+  <meta charset="UTF-8" />
+  <title>Nosotros - Biblioteca NFC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/global.css" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #0b0c2a;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+   
+    .section-content {
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 4rem;
+      border-radius: 1rem;
+      margin: auto;
+      max-width: 960px;
+    }
+
+ </style>
 </head>
-
 <body>
-  <!-- bg-pink-500/50 border-pink-500/10 shadow-pink-500/25 -->
-<!-- bg-blue-500/50 border-blue-500/10 shadow-blue-500/25 -->
-<!-- bg-green-500/50 border-green-500/10 shadow-green-500/25 -->
-<!-- bg-red-500/50 border-red-500/10 shadow-red-500/25 -->
-<!-- bg-yellow-500/50 border-yellow-500/10 shadow-yellow-500/25 -->
-<!-- bg-purple-500/50 border-purple-500/10 shadow-purple-500/25 -->
-<!-- bg-orange-500/50 border-orange-500/10 shadow-orange-500/25 -->
-<!-- bg-indigo-500/50 border-indigo-500/10 shadow-indigo-500/25 -->
-<!-- bg-teal-500/50 border-teal-500/10 shadow-teal-500/25 -->
-<!-- bg-lime-500/50 border-lime-500/10 shadow-lime-500/25 -->
- 
-    <div class="flex flex-col w-full">
-        <section class="app flex flex-col items-center justify-center">
-            <h1>Card</h1>
-            <div class="card-container"></div>
-        </section>
-        <section class="flex flex-col items-center justify-center ">
-            <button type="button" class="colorBtn hidden text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cambiar color</button>
-            <button type="button" class="testBtn text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">test escanear</button>
+  <!-- Fondo estrellado -->
 
-            <p class="msgBox"></p>
-    
-        </section>
+  <!-- Inicio-->
+<section class="flex items-center justify-center min-h-screen text-white">
+  <div class="text-center px-6">
+    <h1 class="text-5xl font-bold mb-4 drop-shadow-lg">Biblioteca NFC</h1>
+    <p class="text-xl max-w-xl mx-auto">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
+  </div>
+</section>
+
+
+  <!-- ¿Quiénes somos? -->
+<section class="relative z-10 text-white py-16">
+  <div class="section-content max-w-3xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-4">¿Quiénes somos?</h2>
+    <p class="text-lg leading-relaxed">
+      Roman Card es un proyecto académico y tecnológico que tiene como objetivo integrar el uso de tarjetas NFC para automatizar el proceso de préstamo, devolución y consulta de libros en bibliotecas universitarias...
+    </p>
+  </div>
+</section>
+
+  <!-- Misión, Visión, Valores -->
+  <section class="">
+  <!--<section class="parallax bg-fixed" style="background-image: url('landing1.webp');">-->
+    <div class="section-content grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div>
+        <h3 class="text-xl font-bold mb-2">Misión</h3>
+        <p>Crear soluciones prácticas que digitalicen los procesos tradicionales en bibliotecas universitarias mediante NFC.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-2">Visión</h3>
+        <p>Ser pioneros en el desarrollo de bibliotecas inteligentes en América Latina.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-2">Valores</h3>
+        <ul class="list-disc list-inside">
+          <li>Innovación</li>
+          <li>Responsabilidad</li>
+          <li>Acceso equitativo</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <script type="module" src="/src/main.js"></script>
+  <!-- Nuestro equipo -->
+<section class="z-10 text-white py-16">
+  <div class="section-content text-center">
+    <h2 class="text-3xl font-bold mb-6">Nuestro equipo</h2>
+    <div class="grid grid-cols-2 gap-8 max-w-md mx-auto">
+      <div>
+        <img src="Jhony.png" alt="Joni" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+        <h4 class="font-semibold">Jonathan A.</h4>
+        <p>Programador NFC</p>
+      </div>
+      <div>
+        <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+        <h4 class="font-semibold">Raul H.</h4>
+        <p>Documentación</p>
+      </div>
+      <div>
+        <img src="Gera.png" alt="Gera" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+        <h4 class="font-semibold">Gerardo V.</h4>
+        <p>Base de Datos y Pruebas</p>
+      </div>
+      <div>
+        <img src="elui.png" alt="elui" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+        <h4 class="font-semibold">Luis A.</h4>
+        <p>Página Web</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Consulta libros -->
+<section class="">
+  <div class="section-content text-center">
+    <h2 class="text-3xl font-bold mb-6">Consulta de Libros</h2>
+    <form id="formConsulta" class="space-y-4 max-w-md mx-auto">
+      <input type="text" name="isbn" id="isbn" required placeholder="Ingrese el ISBN" class="w-full px-4 py-2 rounded " />
+      <button type="submit" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded text-white transition-all">Consultar</button>
+    </form>
+    <div id="mensaje" class="mt-4 font-semibold"></div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center py-6">
+    <p>&copy; 2025 Roman Card – Proyecto Académico</p>
+  </footer>
+
 </body>
-
 </html>

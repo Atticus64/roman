@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sistema de Tarjetas NFC</title>
+  <link rel="stylesheet" href="/src/global.css" />
+  <style>
+    body {
+      margin: 0;
+      background: #0b0c2a;
+      overflow: hidden;
+    }
+
+    .starfield {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.8;
+      border-radius: 50%;
+      transition: transform 0.2s ease-out;
+    }
+
+    .twinkle {
+      animation: twinkle 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen relative">
+  <div class="starfield" id="starfield"></div>
+  <div class="bg-white bg-opacity-90 p-10 rounded-xl shadow-xl max-w-xl w-full text-center z-10">
+    <h1 class="text-3xl font-bold text-blue-700 mb-8">Bienvenido a la libreria NFC</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="registro.html" class="bg-blue-600 text-white py-6 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg">
+        Registrar nuevo usuario
+      </a>
+      <a href="consulta.html" class="bg-green-600 text-white py-6 px-4 rounded-lg hover:bg-green-700 transition-all duration-300 shadow-lg">
+        Consultar usuario por ID
+      </a>
+      <a href="asignar.html" class="bg-purple-600 py-6 px-4 rounded-lg hover:bg-purple-700 transition-all duration-300 shadow-lg col-span-1 md:col-span-2">
+        Escribir en tarjeta NFC
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const starfield = document.getElementById("starfield");
+    const stars = [];
+
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star", "twinkle");
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.dataset.speed = Math.random() * 0.5 + 0.2; 
+      starfield.appendChild(star);
+      stars.push(star);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      stars.forEach((star) => {
+        const speed = parseFloat(star.dataset.speed);
+        const offsetX = x * speed * 50;
+        const offsetY = y * speed * 50;
+        star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
