@@ -1,219 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Nosotros - Biblioteca NFC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/src/global.css" />
-  <style>
-    body {
-      margin: 0;
-      background-color: #F9FAFC; /* Fondo claro */
-      color: #333333; /* Texto gris oscuro para buen contraste */
-      font-family: 'Segoe UI', sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    /* Títulos en verde #19C778 */
-    h1, h2, h3, h4 {
-      color: #19C778;
-    }
-
-    .section-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .section-content {
-      backdrop-filter: blur(8px);
-      background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco para secciones */
-      padding: 4rem;
-      border-radius: 1rem;
-      margin: auto;
-      max-width: 960px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    /* Botón verde personalizado */
-    .btn-verde {
-      background-color: #19C778;
-      color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease-in-out;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .btn-verde:hover {
-      filter: brightness(110%);
-    }
-
-    /* Ajuste para textos en las secciones para que tengan mejor contraste */
-    p, li {
-      color: #444444;
-    }
-
-    footer {
-      background-color: #e1e5ea;
-      color: #555555;
-    }
-
-    .hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 90vh;
-  padding: 4rem 2rem;
-  background: linear-gradient(to right, #f9fafc, #e9fdf3);
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-  width: 100%;
-  gap: 3rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.text-section {
-  flex: 1;
-  text-align: left;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #19C778;
-  margin-bottom: 1rem;
-}
-
-.subtitle {
-  font-size: 1.25rem;
-  color: #444444;
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
-
-.image-section {
-  flex: 1;
-  text-align: center;
-}
-
-.image-section img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-}
+    <meta charset="UTF-8" />
+    <title>Nosotros - Biblioteca NFC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/global.css" />
+    <style>
+        body {
+            margin: 0;
+            background-color: #F9FAFC;
+            /* Fondo claro */
+            color: #333333;
+            /* Texto gris oscuro para buen contraste */
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
 
 
-  </style>
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .section-content {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Fondo semi-transparente blanco para secciones */
+            padding: 4rem;
+            border-radius: 1rem;
+            margin: auto;
+            max-width: 960px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botón verde personalizado */
+        .btn-verde {
+            background-color: #19C778;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-verde:hover {
+            filter: brightness(110%);
+        }
+
+        /* Ajuste para textos en las secciones para que tengan mejor contraste */
+        p,
+        li {
+            color: #444444;
+        }
+
+        footer {
+            background-color: #e1e5ea;
+            color: #555555;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            padding: 4rem 2rem;
+            background: linear-gradient(to right, #f9fafc, #e9fdf3);
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            max-width: 1200px;
+            width: 100%;
+            gap: 3rem;
+            align-items: center;
+            justify-items: space-between;
+        }
+
+        .text-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #19C778;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.55rem;
+            color: #444444;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .image-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: 30rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- Menú superior de navegación -->
-<nav style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">
-  <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
-    <a href="index.html" style="background-color: white; color: #19C778; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; text-decoration: none;">
-      Biblioteca NFC
-    </a>
-    <div style="display: flex; gap: 1.5rem;">
-      <a href="roman/pages/register/index.html" style="text-decoration: none; color: white; font-weight: 500;">Registrar Usuario</a>
-      <a href="roman/pages/prestamo/index.html" style="text-decoration: none; color: white; font-weight: 500;">Préstamo</a>
-      <a href="roman/pages/consultar/index.html" style="text-decoration: none; color: white; font-weight: 500;">Consultar usuario NFC</a>
-      <a href="roman/pages/consultar_libros/index.htmll" style="text-decoration: none; color: white; font-weight: 500;">Consultar Libros</a>
-    </div>
-  </div>
-</nav>
-
-
-
-
- <!-- Inicio -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="text-section">
-      <h1 class="title">Biblioteca NFC</h1>
-      <p class="subtitle">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
-      <button class="btn-verde" onclick="location.href='roman/pages/biblioteca/index.html'">Explorar Libros</button>
-    </div>
-    <div class="image-section">
-      <img src="roman.jpg" alt="Logo Roman Card" />
-    </div>
-  </div>
-</section>
-
-
-  <!-- ¿Quiénes somos? -->
-  <section class="relative z-10 py-16">
-    <div class="section-content max-w-3xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-4">¿Quiénes somos?</h2>
-      <p class="text-lg leading-relaxed">
-        Roman Card es un proyecto académico y tecnológico que tiene como objetivo integrar el uso de tarjetas NFC para automatizar el proceso de préstamo, devolución y consulta de libros en bibliotecas universitarias...
-      </p>
-    </div>
-  </section>
-
-  <!-- Misión, Visión, Valores -->
-  <section>
-    <div class="section-content grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-      <div>
-        <h3 class="text-xl font-bold mb-2">Misión</h3>
-        <p>Crear soluciones prácticas que digitalicen los procesos tradicionales en bibliotecas universitarias mediante NFC.</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold mb-2">Visión</h3>
-        <p>Ser pioneros en el desarrollo de bibliotecas inteligentes en América Latina.</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold mb-2">Valores</h3>
-        <ul class="list-disc list-inside">
-          <li>Innovación</li>
-          <li>Responsabilidad</li>
-          <li>Acceso equitativo</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nuestro equipo -->
-  <section class="z-10 py-16">
-    <div class="section-content text-center">
-      <h2 class="text-3xl font-bold mb-6">Nuestro equipo</h2>
-      <div class="grid grid-cols-2 gap-8 max-w-md mx-auto">
-        <div>
-          <img src="Jhony.png" alt="Joni" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-          <h4 class="font-semibold">Jonathan A.</h4>
-          <p>Programador NFC</p>
+    <!-- Menú superior de navegación -->
+    <nav style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">
+        <div
+            style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+            <a href="/"
+                style="background-color: white; color: #19C778; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; text-decoration: none;">
+                Biblioteca NFC
+            </a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/pages/register/" style="text-decoration: none; color: white; font-weight: 500;">Registrar
+                    Usuario</a>
+                <a href="/pages/prestamo/" style="text-decoration: none; color: white; font-weight: 500;">Préstamo</a>
+                <a href="/pages/consultar/" style="text-decoration: none; color: white; font-weight: 500;">Consultar
+                    usuario NFC</a>
+                <a href="/pages/consultar_libros/"
+                    style="text-decoration: none; color: white; font-weight: 500;">Consultar Libros</a>
+            </div>
         </div>
-        <div>
-          <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-          <h4 class="font-semibold">Raul H.</h4>
-          <p>Documentación</p>
-        </div>
-        <div>
-          <img src="Gera.png" alt="Gera" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-          <h4 class="font-semibold">Gerardo V.</h4>
-          <p>Base de Datos y Pruebas</p>
-        </div>
-        <div>
-          <img src="elui.png" alt="elui" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-          <h4 class="font-semibold">Luis A.</h4>
-          <p>Página Web</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Footer -->
-  <footer class="text-center py-6">
-    <p>&copy; 2025 Roman Card – Proyecto Académico</p>
-  </footer>
+
+
+    <!-- Inicio -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="text-section">
+                <h1 class="text-pretty tracking-tight font-bold text-highlighted text-5xl sm:text-7xl text-black">Roman
+                    Card</h1>
+                <h2 class="title">Una iniciativa tecnología de Innovación</h2>
+                <p class="subtitle">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
+                <button class="btn-verde" onclick="location.href='roman/pages/biblioteca/index.html'">Explorar
+                    Libros</button>
+            </div>
+            <div class="image-section">
+                <img src="roman.jpg" alt="Logo Roman Card" />
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ¿Quiénes somos? -->
+    <section class="relative z-10 py-16">
+        <div class="section-content max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-4">¿Quiénes somos?</h2>
+            <p class="text-lg leading-relaxed">
+                Roman Card es un proyecto académico y tecnológico que tiene como objetivo integrar el uso de tarjetas
+                NFC para automatizar el proceso de préstamo, devolución y consulta de libros en bibliotecas
+                universitarias...
+            </p>
+        </div>
+    </section>
+
+    <!-- Misión, Visión, Valores -->
+    <section>
+        <div class="section-content grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+                <h3 class="text-xl font-bold mb-2">Misión</h3>
+                <p>Crear soluciones prácticas que digitalicen los procesos tradicionales en bibliotecas universitarias
+                    mediante NFC.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">Visión</h3>
+                <p>Ser pioneros en el desarrollo de bibliotecas inteligentes en América Latina.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">Valores</h3>
+                <ul class="list-disc list-inside">
+                    <li>Innovación</li>
+                    <li>Responsabilidad</li>
+                    <li>Acceso equitativo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestro equipo -->
+    <section class="z-10 py-16">
+        <div class="section-content text-center">
+            <h2 class="text-3xl font-bold mb-6">Nuestro equipo</h2>
+            <div class="grid grid-cols-2 gap-8 max-w-md mx-auto">
+                <div>
+                    <img src="Jhony.png" alt="Joni" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+                    <h4 class="font-semibold">Jonathan A.</h4>
+                    <p>Programador NFC</p>
+                </div>
+                <div>
+                    <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+                    <h4 class="font-semibold">Raul H.</h4>
+                    <p>Documentación</p>
+                </div>
+                <div>
+                    <img src="Gera.png" alt="Gera" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+                    <h4 class="font-semibold">Gerardo V.</h4>
+                    <p>Base de Datos y Pruebas</p>
+                </div>
+                <div>
+                    <img src="elui.png" alt="elui" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+                    <h4 class="font-semibold">Luis A.</h4>
+                    <p>Página Web</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6">
+        <p>&copy; 2025 Roman Card – Proyecto Académico</p>
+    </footer>
 
 </body>
+
 </html>
