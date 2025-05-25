@@ -8,56 +8,82 @@
   <style>
     body {
       margin: 0;
-      background-color: #0b0c2a;
-      color: white;
+      background-color: #F9FAFC; /* Fondo claro */
+      color: #333333; /* Texto gris oscuro para buen contraste */
       font-family: 'Segoe UI', sans-serif;
       scroll-behavior: smooth;
     }
 
-.section-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    /* Títulos en verde #19C778 */
+    h1, h2, h3, h4 {
+      color: #19C778;
+    }
 
-   
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
     .section-content {
       backdrop-filter: blur(8px);
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco para secciones */
       padding: 4rem;
       border-radius: 1rem;
       margin: auto;
       max-width: 960px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
 
- </style>
+    /* Botón verde personalizado */
+    .btn-verde {
+      background-color: #19C778;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease-in-out;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-verde:hover {
+      filter: brightness(110%);
+    }
+
+    /* Ajuste para textos en las secciones para que tengan mejor contraste */
+    p, li {
+      color: #444444;
+    }
+
+    footer {
+      background-color: #e1e5ea;
+      color: #555555;
+    }
+  </style>
 </head>
 <body>
-  <!-- Fondo estrellado -->
 
   <!-- Inicio-->
-<section class="flex items-center justify-center min-h-screen text-white">
-  <div class="text-center px-6">
-    <h1 class="text-5xl font-bold mb-4 drop-shadow-lg">Biblioteca NFC</h1>
-    <p class="text-xl max-w-xl mx-auto">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
-  </div>
-</section>
-
+  <section class="flex items-center justify-center min-h-screen">
+    <div class="text-center px-6">
+      <h1 class="text-5xl font-bold mb-4 drop-shadow-lg">Biblioteca NFC</h1>
+      <p class="text-xl max-w-xl mx-auto">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
+    </div>
+  </section>
 
   <!-- ¿Quiénes somos? -->
-<section class="relative z-10 text-white py-16">
-  <div class="section-content max-w-3xl mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-4">¿Quiénes somos?</h2>
-    <p class="text-lg leading-relaxed">
-      Roman Card es un proyecto académico y tecnológico que tiene como objetivo integrar el uso de tarjetas NFC para automatizar el proceso de préstamo, devolución y consulta de libros en bibliotecas universitarias...
-    </p>
-  </div>
-</section>
+  <section class="relative z-10 py-16">
+    <div class="section-content max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-4">¿Quiénes somos?</h2>
+      <p class="text-lg leading-relaxed">
+        Roman Card es un proyecto académico y tecnológico que tiene como objetivo integrar el uso de tarjetas NFC para automatizar el proceso de préstamo, devolución y consulta de libros en bibliotecas universitarias...
+      </p>
+    </div>
+  </section>
 
   <!-- Misión, Visión, Valores -->
-  <section class="">
-  <!--<section class="parallax bg-fixed" style="background-image: url('landing1.webp');">-->
+  <section>
     <div class="section-content grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
       <div>
         <h3 class="text-xl font-bold mb-2">Misión</h3>
@@ -79,48 +105,48 @@
   </section>
 
   <!-- Nuestro equipo -->
-<section class="z-10 text-white py-16">
-  <div class="section-content text-center">
-    <h2 class="text-3xl font-bold mb-6">Nuestro equipo</h2>
-    <div class="grid grid-cols-2 gap-8 max-w-md mx-auto">
-      <div>
-        <img src="Jhony.png" alt="Joni" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-        <h4 class="font-semibold">Jonathan A.</h4>
-        <p>Programador NFC</p>
-      </div>
-      <div>
-        <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-        <h4 class="font-semibold">Raul H.</h4>
-        <p>Documentación</p>
-      </div>
-      <div>
-        <img src="Gera.png" alt="Gera" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-        <h4 class="font-semibold">Gerardo V.</h4>
-        <p>Base de Datos y Pruebas</p>
-      </div>
-      <div>
-        <img src="elui.png" alt="elui" class="w-24 h-24 mx-auto mb-3 rounded-full" />
-        <h4 class="font-semibold">Luis A.</h4>
-        <p>Página Web</p>
+  <section class="z-10 py-16">
+    <div class="section-content text-center">
+      <h2 class="text-3xl font-bold mb-6">Nuestro equipo</h2>
+      <div class="grid grid-cols-2 gap-8 max-w-md mx-auto">
+        <div>
+          <img src="Jhony.png" alt="Joni" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+          <h4 class="font-semibold">Jonathan A.</h4>
+          <p>Programador NFC</p>
+        </div>
+        <div>
+          <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+          <h4 class="font-semibold">Raul H.</h4>
+          <p>Documentación</p>
+        </div>
+        <div>
+          <img src="Gera.png" alt="Gera" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+          <h4 class="font-semibold">Gerardo V.</h4>
+          <p>Base de Datos y Pruebas</p>
+        </div>
+        <div>
+          <img src="elui.png" alt="elui" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+          <h4 class="font-semibold">Luis A.</h4>
+          <p>Página Web</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Consulta libros -->
-<section class="">
-  <div class="section-content text-center">
-    <h2 class="text-3xl font-bold mb-6">Consulta de Libros</h2>
-    <form id="formConsulta" class="space-y-4 max-w-md mx-auto">
-      <input type="text" name="isbn" id="isbn" required placeholder="Ingrese el ISBN" class="w-full px-4 py-2 rounded " />
-      <button type="submit" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded text-white transition-all">Consultar</button>
-    </form>
-    <div id="mensaje" class="mt-4 font-semibold"></div>
-  </div>
-</section>
+  <!-- Consulta libros -->
+  <section>
+    <div class="section-content text-center">
+      <h2 class="text-3xl font-bold mb-6">Consulta de Libros</h2>
+      <form id="formConsulta" class="space-y-4 max-w-md mx-auto">
+        <input type="text" name="isbn" id="isbn" required placeholder="Ingrese el ISBN" class="w-full px-4 py-2 rounded" />
+        <button type="submit" class="btn-verde">Consultar</button>
+      </form>
+      <div id="mensaje" class="mt-4 font-semibold"></div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-center py-6">
+  <footer class="text-center py-6">
     <p>&copy; 2025 Roman Card – Proyecto Académico</p>
   </footer>
 
