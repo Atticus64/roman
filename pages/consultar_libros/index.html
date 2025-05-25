@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lectura NFC - Consulta Usuario</title>
+<title>Consulta Libro NFC</title>
 
 <!-- Atropos CSS -->
 <link href="https://unpkg.com/atropos/css" rel="stylesheet" />
@@ -11,8 +11,8 @@
 <style>
   /* Fondo verde para toda la página */
   body {
-    background-color: #19C778; 
-    color: #19C778; 
+    background-color: #19C778; /* verde exacto */
+    color: #107144; /* verde más oscuro para contraste */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     margin: 0;
@@ -56,7 +56,7 @@
     margin: 1.5rem auto;
     display: none;
   }
-  /* Animación de pulso para espera lectura NFC */
+  /* Animación sencilla de pulso para espera lectura NFC */
   .pulse {
     width: 60px;
     height: 60px;
@@ -80,7 +80,7 @@
     }
   }
 
-  #userNotFound {
+  #bookNotFound {
     margin-top: 1rem;
     color: #d32f2f; /* rojo oscuro para error */
     display: none;
@@ -97,8 +97,8 @@
     background-color: #107144;
   }
 
-  /* Tarjeta usuario con Atropos */
-  #userCard {
+  /* Tarjeta libro con Atropos */
+  #bookCard {
     max-width: 320px;
     margin: 2rem auto 0 auto;
     display: none;
@@ -110,7 +110,7 @@
     box-shadow: 0 5px 15px rgba(25, 199, 120, 0.3);
     text-align: left;
   }
-  #userCard h3 {
+  #bookCard h3 {
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
@@ -120,39 +120,39 @@
 <body>
 
 <div class="container">
-  <h1>Consulta Usuario NFC</h1>
+  <h1>Consulta Libro NFC</h1>
   <button id="btnStartNFC">Leer Tag NFC</button>
 
   <!-- Animación de espera lectura -->
   <div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>
 
-  <div id="userNotFound">Usuario no encontrado.</div>
-  <button id="btnRegisterRedirect">Registrar Usuario</button>
+  <div id="bookNotFound">Libro no encontrado.</div>
+  <button id="btnRegisterRedirect">Registrar Libro</button>
 
-  <!-- Tarjeta usuario con Atropos -->
-  <div id="userCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC">
-    <h3 id="userName"></h3>
-    <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
-    <p><strong>ID:</strong> <span id="userId"></span></p>
+  <!-- Tarjeta libro con Atropos -->
+  <div id="bookCard" class="atropos" tabindex="0" aria-label="Tarjeta de libro NFC">
+    <h3 id="bookTitle"></h3>
+    <p><strong>Autor:</strong> <span id="bookAuthor"></span></p>
+    <p><strong>ISBN:</strong> <span id="bookISBN"></span></p>
   </div>
 </div>
 
 <!-- Atropos JS -->
 <script src="https://unpkg.com/atropos"></script>
 <script>
-  const atroposUser = Atropos({
-    el: '#userCard',
+  const atroposBook = Atropos({
+    el: '#bookCard',
     shadow: false,
     highlight: false
   });
 
   const btnStartNFC = document.getElementById('btnStartNFC');
   const loading = document.getElementById('loading');
-  const userCard = document.getElementById('userCard');
-  const userName = document.getElementById('userName');
-  const userUsername = document.getElementById('userUsername');
-  const userId = document.getElementById('userId');
-  const userNotFound = document.getElementById('userNotFound');
+  const bookCard = document.getElementById('bookCard');
+  const bookTitle = document.getElementById('bookTitle');
+  const bookAuthor = document.getElementById('bookAuthor');
+  const bookISBN = document.getElementById('bookISBN');
+  const bookNotFound = document.getElementById('bookNotFound');
   const btnRegisterRedirect = document.getElementById('btnRegisterRedirect');
 
   let nfcReader;
@@ -164,8 +164,8 @@
     }
 
     // Limpiar y mostrar animación
-    userCard.style.display = 'none';
-    userNotFound.style.display = 'none';
+    bookCard.style.display = 'none';
+    bookNotFound.style.display = 'none';
     btnRegisterRedirect.style.display = 'none';
     loading.style.display = 'block';
 
@@ -197,7 +197,7 @@
           return;
         }
 
-        consultarUsuarioPorUID(uid);
+        consultarLibroPorUID(uid);
       };
     } catch (error) {
       loading.style.display = 'none';
@@ -205,33 +205,33 @@
     }
   });
 
-  function consultarUsuarioPorUID(uid) {
-    fetch(`/api/checkUser?uid=${encodeURIComponent(uid)}`)
+  function consultarLibroPorUID(uid) {
+    fetch(`/api/checkBook?uid=${encodeURIComponent(uid)}`)
       .then(res => res.json())
       .then(data => {
         if (data.exists) {
-          userName.textContent = data.user.name;
-          userUsername.textContent = data.user.username;
-          userId.textContent = data.user.id;
-          userCard.style.display = 'block';
-          userNotFound.style.display = 'none';
+          bookTitle.textContent = data.book.title;
+          bookAuthor.textContent = data.book.author;
+          bookISBN.textContent = data.book.isbn;
+          bookCard.style.display = 'block';
+          bookNotFound.style.display = 'none';
           btnRegisterRedirect.style.display = 'none';
         } else {
-          userCard.style.display = 'none';
-          userNotFound.style.display = 'block';
+          bookCard.style.display = 'none';
+          bookNotFound.style.display = 'block';
           btnRegisterRedirect.style.display = 'inline-block';
         }
       })
       .catch(err => {
-        alert('Error al consultar el usuario: ' + err);
-        userCard.style.display = 'none';
-        userNotFound.style.display = 'none';
+        alert('Error al consultar el libro: ' + err);
+        bookCard.style.display = 'none';
+        bookNotFound.style.display = 'none';
         btnRegisterRedirect.style.display = 'none';
       });
   }
 
   btnRegisterRedirect.addEventListener('click', () => {
-    window.location.href = '/registrar-usuario.html';
+    window.location.href = '/registrar-libro.html';
   });
 </script>
 

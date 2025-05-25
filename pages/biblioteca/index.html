@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Libros</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #19C778;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: #19C778;
+      margin-bottom: 40px;
+    }
+
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .libro {
+      background: #f9f9f9;
+      border: 2px solid #19C778;
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .libro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .libro h2 {
+      margin: 0 0 10px;
+      color: #19C778;
+      font-size: 20px;
+    }
+
+    .libro p {
+      margin: 4px 0;
+    }
+
+    .loading {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📚 Catálogo de Libros</h1>
+    <div id="loading" class="loading">Cargando libros...</div>
+    <div id="catalogo" class="catalogo" style="display: none;"></div>
+  </div>
+
+  <script>
+    async function cargarLibros() {
+      try {
+        const res = await fetch('/api/libros'); // Ajusta la ruta si es necesario
+        const libros = await res.json();
+
+        const catalogo = document.getElementById('catalogo');
+        const loading = document.getElementById('loading');
+        loading.style.display = 'none';
+        catalogo.style.display = 'grid';
+
+        libros.forEach(libro => {
+          const tarjeta = document.createElement('div');
+          tarjeta.className = 'libro';
+          tarjeta.innerHTML = `
+            <h2>${libro.titulo}</h2>
+            <p><strong>Autor:</strong> ${libro.autor}</p>
+            <p><strong>Año:</strong> ${libro.anio}</p>
+            <p><strong>ISBN:</strong> ${libro.isbn}</p>
+          `;
+          catalogo.appendChild(tarjeta);
+        });
+
+      } catch (error) {
+        document.getElementById('loading').innerText = 'Error al cargar los libros.';
+        console.error('Error al cargar libros:', error);
+      }
+    }
+
+    cargarLibros();
+  </script>
+
+</body>
+</html>

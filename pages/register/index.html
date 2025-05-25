@@ -2,100 +2,164 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Registro de Usuario</title>
-   <link rel="stylesheet" href="/src/global.css" />
+  <title>Registro de Usuario - Biblioteca NFC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       margin: 0;
-      background: #0b0c2a;
-      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #19C778; /* verde Nuxt */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    .starfield {
-      position: fixed;
+
+    h1 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    form {
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #333;
+
+  /* Efecto 3D con sombras */
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),  /* sombra principal */
+    0 10px 20px rgba(0, 0, 0, 0.15), /* sombra más difusa */
+    inset 0 0 0 1px #19C778; /* borde verde sutil dentro */
+  transition: box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow:
+    0 6px 10px rgba(0, 0, 0, 0.15),
+    0 12px 30px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1.5px #19C778;
+}
+
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #19C778;
+      display: block;
+    }
+
+    input {
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline-color: #19C778;
+      box-sizing: border-box;
     }
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      opacity: 0.8;
-      border-radius: 50%;
-      transition: transform 0.2s ease-out;
+
+    button {
+      background-color: #19C778;
+      color: white;
+      padding: 0.75rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      margin-top: 0.5rem;
     }
-    .twinkle {
-      animation: twinkle 2s infinite alternate ease-in-out;
+
+    button:hover {
+      filter: brightness(110%);
     }
-    @keyframes twinkle {
-      0% { opacity: 0.2; }
-      100% { opacity: 1; }
+
+    .mensaje {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .exito {
+      background-color: #d1f5e1;
+      color: #067d42;
+    }
+
+    .error {
+      background-color: #ffd1d1;
+      color: #b00020;
     }
   </style>
 </head>
-<body class="flex items-center justify-center min-h-screen relative">
-  <div class="starfield" id="starfield"></div>
+<body>
 
-  <div class="bg-white bg-opacity-90 p-10 rounded-xl shadow-lg w-full max-w-md z-10">
-    <h1 class="text-2xl font-bold text-blue-700 text-center mb-6">Registro de Usuario</h1>
-    <form method="POST" action="/registro" class="space-y-4">
-      <input type="text" name="nombre" placeholder="Nombre del usuario"
-             class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-      <button type="submit"
-              class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-        Registrar
-      </button>
-    </form>
+  <h1>Registro de Usuario</h1>
 
-    <div class="mt-8 text-center bg-green-50 border border-green-300 p-4 rounded">
-      <p class="text-green-700 font-semibold">Usuario registrado exitosamente</p>
-      <p><strong>ID:</strong>  user.id </p>
-      <p><strong>Nombre:</strong>  user.name </p>
-
-      <img src="https://avatars.dicebear.com/api/adventurer-neutral/<%= user.id %>.svg"
-           alt="Avatar neutral"
-           class="mt-3 w-24 h-24 rounded-full mx-auto shadow-md bg-gray-100 p-2" />
+  <form id="registroForm">
+    <div>
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" required />
     </div>
-
-    <div class="mt-8 text-center bg-red-50 border border-red-300 p-4 rounded">
-      <p class="text-red-700 font-semibold"></p>
+    <div>
+      <label for="telefono">Número de Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required />
     </div>
-
-    <div class="mt-6 text-center">
-      <a href="funciones.html" class="text-blue-500 hover:underline">Volver al inicio</a>
+    <div>
+      <label for="cuenta">Número de Cuenta (opcional):</label>
+      <input type="text" id="cuenta" name="cuenta" />
     </div>
-  </div>
+    <button type="submit">Registrar Usuario</button>
+    <div id="mensaje" class="mensaje"></div>
+  </form>
 
   <script>
-    const starfield = document.getElementById("starfield");
-    const stars = [];
+    const form = document.getElementById("registroForm");
+    const mensaje = document.getElementById("mensaje");
 
-    for (let i = 0; i < 200; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star", "twinkle");
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      star.dataset.speed = Math.random() * 0.5 + 0.2;
-      starfield.appendChild(star);
-      stars.push(star);
-    }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    document.addEventListener("mousemove", (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      const data = {
+        nombre: form.nombre.value.trim(),
+        telefono: form.telefono.value.trim(),
+        cuenta: form.cuenta.value.trim()
+      };
 
-      stars.forEach((star) => {
-        const speed = parseFloat(star.dataset.speed);
-        const offsetX = x * speed * 50;
-        const offsetY = y * speed * 50;
-        star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-      });
+      try {
+        // Cambia la URL por la de tu backend
+        const response = await fetch("/api/registrar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok && resultado.exito) {
+          mensaje.textContent = "✅ Usuario registrado exitosamente.";
+          mensaje.className = "mensaje exito";
+        } else {
+          mensaje.textContent = "❌ No se pudo registrar al usuario.";
+          mensaje.className = "mensaje error";
+        }
+      } catch (error) {
+        mensaje.textContent = "⚠️ Error al conectar con el servidor.";
+        mensaje.className = "mensaje error";
+      }
+
+      mensaje.style.display = "block";
     });
   </script>
+
 </body>
 </html>
