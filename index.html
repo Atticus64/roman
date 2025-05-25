@@ -64,6 +64,24 @@
 </head>
 <body>
 
+<!-- Menú superior de navegación -->
+<nav style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">
+  <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+    <a href="index.html" style="background-color: white; color: #19C778; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; text-decoration: none;">
+      Biblioteca NFC
+    </a>
+    <div style="display: flex; gap: 1.5rem;">
+      <a href="registro.html" style="text-decoration: none; color: white; font-weight: 500;">Registrar Usuario</a>
+      <a href="prestamo.html" style="text-decoration: none; color: white; font-weight: 500;">Préstamo</a>
+      <a href="escanear.html" style="text-decoration: none; color: white; font-weight: 500;">Escanear NFC</a>
+      <a href="consulta.html" style="text-decoration: none; color: white; font-weight: 500;">Consultar Libros</a>
+    </div>
+  </div>
+</nav>
+
+
+
+
   <!-- Inicio-->
   <section class="flex items-center justify-center min-h-screen">
     <div class="text-center px-6">
@@ -130,18 +148,6 @@
           <p>Página Web</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Consulta libros -->
-  <section>
-    <div class="section-content text-center">
-      <h2 class="text-3xl font-bold mb-6">Consulta de Libros</h2>
-      <form id="formConsulta" class="space-y-4 max-w-md mx-auto">
-        <input type="text" name="isbn" id="isbn" required placeholder="Ingrese el ISBN" class="w-full px-4 py-2 rounded" />
-        <button type="submit" class="btn-verde">Consultar</button>
-      </form>
-      <div id="mensaje" class="mt-4 font-semibold"></div>
     </div>
   </section>
 
