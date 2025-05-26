@@ -133,120 +133,125 @@
     </nav>
      
 
-<div class="container">
-  <h1>Consulta Usuario NFC</h1>
-  <button id="btnStartNFC">Leer Tag NFC</button>
+    <section class="flex flex-col items-center justify-center m-4 ">
+        <div class="container">
+          <h1>Consulta Usuario NFC</h1>
+          <button id="btnStartNFC">Leer Tag NFC</button>
+        
+          <!-- Animación de espera lectura -->
+          <div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>
+        
+          <div id="userNotFound">Usuario no encontrado.</div>
+          <button id="btnRegisterRedirect">Registrar Usuario</button>
+        
+          <!-- Tarjeta usuario con Atropos -->
+          <div id="userCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC">
+            <h3 id="userName"></h3>
+            <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
+            <p><strong>ID:</strong> <span id="userId"></span></p>
+          </div>
+        </div>
+        
+    </section>
 
-  <!-- Animación de espera lectura -->
-  <div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>
-
-  <div id="userNotFound">Usuario no encontrado.</div>
-  <button id="btnRegisterRedirect">Registrar Usuario</button>
-
-  <!-- Tarjeta usuario con Atropos -->
-  <div id="userCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC">
-    <h3 id="userName"></h3>
-    <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
-    <p><strong>ID:</strong> <span id="userId"></span></p>
-  </div>
-</div>
 
 <!-- Atropos JS -->
-<script src="https://unpkg.com/atropos"></script>
+<!--<script src="https://unpkg.com/atropos"></script>-->
+<script type="module" src="/src/consultar.js"></script>
 <script>
-  const atroposUser = Atropos({
-    el: '#userCard',
-    shadow: false,
-    highlight: false
-  });
+//  const atroposUser = Atropos({
+//    el: '#userCard',
+//    shadow: false,
+//    highlight: false
+//  });
 
-  const btnStartNFC = document.getElementById('btnStartNFC');
-  const loading = document.getElementById('loading');
-  const userCard = document.getElementById('userCard');
-  const userName = document.getElementById('userName');
-  const userUsername = document.getElementById('userUsername');
-  const userId = document.getElementById('userId');
-  const userNotFound = document.getElementById('userNotFound');
-  const btnRegisterRedirect = document.getElementById('btnRegisterRedirect');
+//  const btnStartNFC = document.getElementById('btnStartNFC');
+//  const loading = document.getElementById('loading');
+//  const userCard = document.getElementById('userCard');
+//  const userName = document.getElementById('userName');
+//  const userUsername = document.getElementById('userUsername');
+//  const userId = document.getElementById('userId');
+//  const userNotFound = document.getElementById('userNotFound');
+//  const btnRegisterRedirect = document.getElementById('btnRegisterRedirect');
 
-  let nfcReader;
+//  let nfcReader;
 
-  btnStartNFC.addEventListener('click', async () => {
-    if (!('NDEFReader' in window)) {
-      alert('Tu navegador no soporta Web NFC');
-      return;
-    }
+//  btnStartNFC.addEventListener('click', async () => {
+//    if (!('NDEFReader' in window)) {
+//      alert('Tu navegador no soporta Web NFC');
+//      return;
+//    }
 
-    // Limpiar y mostrar animación
-    userCard.style.display = 'none';
-    userNotFound.style.display = 'none';
-    btnRegisterRedirect.style.display = 'none';
-    loading.style.display = 'block';
+//    // Limpiar y mostrar animación
+//    userCard.style.display = 'none';
+//    userNotFound.style.display = 'none';
+//    btnRegisterRedirect.style.display = 'none';
+//    loading.style.display = 'block';
 
-    try {
-      nfcReader = new NDEFReader();
-      await nfcReader.scan();
+//    try {
+//      nfcReader = new NDEFReader();
+//      await nfcReader.scan();
 
-      nfcReader.onreadingerror = () => {
-        loading.style.display = 'none';
-        alert('Error leyendo NFC, intenta de nuevo.');
-      };
+//      nfcReader.onreadingerror = () => {
+//        loading.style.display = 'none';
+//        alert('Error leyendo NFC, intenta de nuevo.');
+//      };
 
-      nfcReader.onreading = event => {
-        loading.style.display = 'none';
+//      nfcReader.onreading = event => {
+//        loading.style.display = 'none';
 
-        const message = event.message;
-        let uid = null;
+//        const message = event.message;
+//        let uid = null;
 
-        for (const record of message.records) {
-          if (record.recordType === "text") {
-            const textDecoder = new TextDecoder(record.encoding || "utf-8");
-            uid = textDecoder.decode(record.data);
-            break;
-          }
-        }
+//        for (const record of message.records) {
+//          if (record.recordType === "text") {
+//            const textDecoder = new TextDecoder(record.encoding || "utf-8");
+//            uid = textDecoder.decode(record.data);
+//            break;
+//          }
+//        }
 
-        if (!uid) {
-          alert('No se pudo leer el UID del tag NFC.');
-          return;
-        }
+//        if (!uid) {
+//          alert('No se pudo leer el UID del tag NFC.');
+//          return;
+//        }
 
-        consultarUsuarioPorUID(uid);
-      };
-    } catch (error) {
-      loading.style.display = 'none';
-      alert('Error al iniciar la lectura NFC: ' + error);
-    }
-  });
+//        consultarUsuarioPorUID(uid);
+//      };
+//    } catch (error) {
+//      loading.style.display = 'none';
+//      alert('Error al iniciar la lectura NFC: ' + error);
+//    }
+//  });
 
-  function consultarUsuarioPorUID(uid) {
-    fetch(`/api/checkUser?uid=${encodeURIComponent(uid)}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.exists) {
-          userName.textContent = data.user.name;
-          userUsername.textContent = data.user.username;
-          userId.textContent = data.user.id;
-          userCard.style.display = 'block';
-          userNotFound.style.display = 'none';
-          btnRegisterRedirect.style.display = 'none';
-        } else {
-          userCard.style.display = 'none';
-          userNotFound.style.display = 'block';
-          btnRegisterRedirect.style.display = 'inline-block';
-        }
-      })
-      .catch(err => {
-        alert('Error al consultar el usuario: ' + err);
-        userCard.style.display = 'none';
-        userNotFound.style.display = 'none';
-        btnRegisterRedirect.style.display = 'none';
-      });
-  }
+//  function consultarUsuarioPorUID(uid) {
+//    fetch(`/api/checkUser?uid=${encodeURIComponent(uid)}`)
+//      .then(res => res.json())
+//      .then(data => {
+//        if (data.exists) {
+//          userName.textContent = data.user.name;
+//          userUsername.textContent = data.user.username;
+//          userId.textContent = data.user.id;
+//          userCard.style.display = 'block';
+//          userNotFound.style.display = 'none';
+//          btnRegisterRedirect.style.display = 'none';
+//        } else {
+//          userCard.style.display = 'none';
+//          userNotFound.style.display = 'block';
+//          btnRegisterRedirect.style.display = 'inline-block';
+//        }
+//      })
+//      .catch(err => {
+//        alert('Error al consultar el usuario: ' + err);
+//        userCard.style.display = 'none';
+//        userNotFound.style.display = 'none';
+//        btnRegisterRedirect.style.display = 'none';
+//      });
+//  }
 
-  btnRegisterRedirect.addEventListener('click', () => {
-    window.location.href = '/registrar-usuario.html';
-  });
+//  btnRegisterRedirect.addEventListener('click', () => {
+//    window.location.href = '/registrar-usuario.html';
+//  });
 </script>
 
 </body>

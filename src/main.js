@@ -7,7 +7,6 @@ import { io } from "socket.io-client";
 import { createCard } from './card';
 
 const socket = io("http://localhost:5000"); // Asegúrate que es el mismo puerto del backend
-const box = document.querySelector(".data");
 
 const message = document.querySelector(".msgBox");
 let cardPresent = false

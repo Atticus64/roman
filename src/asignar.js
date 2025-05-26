@@ -32,6 +32,7 @@ const socket = io('/data');
 
 form.addEventListener("submit", e => {
     e.preventDefault();
+    console.log("Formulario enviado");
     const idIngresado = document.getElementById("userId").value.trim();
     usuarioActual = usuarios.find(u => u.id === idIngresado);
 
@@ -49,6 +50,7 @@ form.addEventListener("submit", e => {
 
     // Enviar evento para backend o emulador de NFC
     socket.emit('esperar_nfc');
+
 });
 
 socket.on('nfc_detectada', (tarjeta) => {
