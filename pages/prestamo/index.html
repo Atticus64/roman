@@ -24,11 +24,12 @@
       padding: 2rem 3rem;
       max-width: 600px;
       width: 100%;
+      justify-content: center;
       box-shadow:
         0 4px 8px rgba(0,0,0,0.15),
         0 12px 24px rgba(0,0,0,0.1);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 2rem;
     }
 
@@ -76,10 +77,10 @@
 
     @keyframes pulse {
       0%, 100% {
-        box-shadow: 0 0 10px #19C778, 0 0 10px #19C778;
+        box-shadow: 0 0 10px #79fbc0, 0 0 10px #19C778;
       }
       50% {
-        box-shadow: 0 0 30px #19C778, 0 0 30px #19C778;
+        box-shadow: 0 0 20px #4ca77e, 0 0 20px #19C778;
       }
     }
 
@@ -167,6 +168,7 @@
 </head>
 <body>
 
+    <wc-toast></wc-toast>
 
         <!-- Menú superior de navegación -->
     <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
@@ -190,103 +192,52 @@
     </nav>
 
 
+  <section class="flex flex-col items-center justify-center" >
+    <h1>Préstamo de Libros</h1>
 
-  <h1>Préstamo de Libros</h1>
-
-  <div class="container">
-    <!-- Sección Libro -->
-    <section class="section" id="bookSection">
-      <h2>Registrar Libro</h2>
-      <div id="bookWaiting" class="waiting" aria-label="Esperando lectura NFC del libro">
-        <!-- Ícono NFC SVG -->
-        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-          <path d="M47.4 44.5v-5.2c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v1.3h-5.3v-1.3c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v5.2c0 4.1 3.3 7.5 7.4 7.5s7.4-3.4 7.4-7.5zm-6.4 1.4c0 .8-.7 1.5-1.6 1.5s-1.6-.7-1.6-1.5v-1.4c0-.8.7-1.5 1.6-1.5s1.6.7 1.6 1.5v1.4zm15.1-10.2v-25c0-2.2-1.8-4-4-4H11.7c-2.2 0-4 1.8-4 4v33c0 2.2 1.8 4 4 4h21.1v-4.1H11.7v-25h32.4v19.7h4z"/>
-        </svg>
+      <div class="container">
+        <!-- Sección Libro -->
+        <section class="section" id="bookSection">
+          <h2>Registrar Libro</h2>
+          <div id="bookWaiting" class="waiting" aria-label="Esperando lectura NFC del libro">
+            <!-- Ícono NFC SVG -->
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M47.4 44.5v-5.2c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v1.3h-5.3v-1.3c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v5.2c0 4.1 3.3 7.5 7.4 7.5s7.4-3.4 7.4-7.5zm-6.4 1.4c0 .8-.7 1.5-1.6 1.5s-1.6-.7-1.6-1.5v-1.4c0-.8.7-1.5 1.6-1.5s1.6.7 1.6 1.5v1.4zm15.1-10.2v-25c0-2.2-1.8-4-4-4H11.7c-2.2 0-4 1.8-4 4v33c0 2.2 1.8 4 4 4h21.1v-4.1H11.7v-25h32.4v19.7h4z"/>
+            </svg>
+          </div>
+          <button id="btnRegisterBook">Esperar lectura NFC libro</button>
+          <div id="bookCard" class="card" style="display:none;">
+            <h3>Datos del Libro</h3>
+            <p><strong>Título:</strong> <span id="bookTitle"></span></p>
+            <p><strong>Autor:</strong> <span id="bookAuthor"></span></p>
+            <p><strong>Código:</strong> <span id="bookCode"></span></p>
+          </div>
+        </section>
+    
+        <!-- Sección Usuario -->
+        <section class="section" id="userSection" >
+          <h2>Ingresar Usuario</h2>
+          <div id="userWaiting" class="waiting" aria-label="Esperando lectura NFC del usuario">
+            <!-- Ícono NFC SVG -->
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M47.4 44.5v-5.2c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v1.3h-5.3v-1.3c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v5.2c0 4.1 3.3 7.5 7.4 7.5s7.4-3.4 7.4-7.5zm-6.4 1.4c0 .8-.7 1.5-1.6 1.5s-1.6-.7-1.6-1.5v-1.4c0-.8.7-1.5 1.6-1.5s1.6.7 1.6 1.5v1.4zm15.1-10.2v-25c0-2.2-1.8-4-4-4H11.7c-2.2 0-4 1.8-4 4v33c0 2.2 1.8 4 4 4h21.1v-4.1H11.7v-25h32.4v19.7h4z"/>
+            </svg>
+          </div>
+          <button id="btnRegisterUser">Esperar lectura NFC usuario</button>
+    
+          <!-- Atropos efecto para tarjeta usuario -->
+          <div id="atroposUserCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC" style="display:none;">
+            <h3 id="userName"></h3>
+            <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
+            <p><strong>ID:</strong> <span id="userId"></span></p>
+          </div>
+        </section>
       </div>
-      <button id="btnRegisterBook">Esperar lectura NFC libro</button>
-      <div id="bookCard" class="card" style="display:none;">
-        <h3>Datos del Libro</h3>
-        <p><strong>Título:</strong> <span id="bookTitle"></span></p>
-        <p><strong>Autor:</strong> <span id="bookAuthor"></span></p>
-        <p><strong>Código:</strong> <span id="bookCode"></span></p>
-      </div>
-    </section>
-
-    <!-- Sección Usuario -->
-    <section class="section" id="userSection" style="margin-top: 2rem;">
-      <h2>Ingresar Usuario</h2>
-      <div id="userWaiting" class="waiting" aria-label="Esperando lectura NFC del usuario">
-        <!-- Ícono NFC SVG -->
-        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-          <path d="M47.4 44.5v-5.2c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v1.3h-5.3v-1.3c0-1.8-1.4-3.3-3.2-3.3-1.8 0-3.2 1.5-3.2 3.3v5.2c0 4.1 3.3 7.5 7.4 7.5s7.4-3.4 7.4-7.5zm-6.4 1.4c0 .8-.7 1.5-1.6 1.5s-1.6-.7-1.6-1.5v-1.4c0-.8.7-1.5 1.6-1.5s1.6.7 1.6 1.5v1.4zm15.1-10.2v-25c0-2.2-1.8-4-4-4H11.7c-2.2 0-4 1.8-4 4v33c0 2.2 1.8 4 4 4h21.1v-4.1H11.7v-25h32.4v19.7h4z"/>
-        </svg>
-      </div>
-      <button id="btnRegisterUser">Esperar lectura NFC usuario</button>
-
-      <!-- Atropos efecto para tarjeta usuario -->
-      <div id="atroposUserCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC" style="display:none;">
-        <h3 id="userName"></h3>
-        <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
-        <p><strong>ID:</strong> <span id="userId"></span></p>
-      </div>
-    </section>
-  </div>
+  </section>
 
   <!-- Atropos JS -->
-  <script src="https://unpkg.com/atropos"></script>
 
-  <script>
-    // Inicializar Atropos para la tarjeta usuario
-    const atroposUser = Atropos({
-      el: '#atroposUserCard',
-      shadow: false,
-      highlight: false,
-      onEnter() {
-        // acción al entrar con el cursor
-      },
-      onLeave() {
-        // acción al salir
-      }
-    });
-
-    // Botones
-    const btnRegisterBook = document.getElementById('btnRegisterBook');
-    const btnRegisterUser = document.getElementById('btnRegisterUser');
-
-    // Elementos de espera
-    const bookWaiting = document.getElementById('bookWaiting');
-    const userWaiting = document.getElementById('userWaiting');
-
-    // Cartas para mostrar datos (ocultas porque no hay datos aún)
-    const bookCard = document.getElementById('bookCard');
-    const userCard = document.getElementById('atroposUserCard');
-
-    // Función para activar estado de espera lectura NFC
-    function activarEspera(esperaElemento) {
-      esperaElemento.style.display = 'flex';
-    }
-
-    // Función para desactivar estado de espera lectura NFC
-    function desactivarEspera(esperaElemento) {
-      esperaElemento.style.display = 'none';
-    }
-
-    // Al dar click en botón "Esperar lectura NFC libro"
-    btnRegisterBook.addEventListener('click', () => {
-      activarEspera(bookWaiting);
-      // Aquí pondrías el código para activar lectura NFC del libro
-      // Por ahora solo queda la UI esperando...
-      bookCard.style.display = 'none'; // Ocultamos datos si estuvieran
-    });
-
-    // Al dar click en botón "Esperar lectura NFC usuario"
-    btnRegisterUser.addEventListener('click', () => {
-      activarEspera(userWaiting);
-      // Aquí pondrías el código para activar lectura NFC del usuario
-      // Por ahora solo queda la UI esperando...
-      userCard.style.display = 'none'; // Ocultamos datos si estuvieran
-    });
-
+  <script type="module" src="/src/prestamo.js">
   </script>
 </body>
 </html>
