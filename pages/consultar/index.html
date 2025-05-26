@@ -111,6 +111,7 @@
 
 </head>
 <body>
+    <wc-toast></wc-toast>
 
 <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
         <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
@@ -139,21 +140,17 @@
           <button id="btnStartNFC">Leer Tag NFC</button>
         
           <!-- Animación de espera lectura -->
-          <div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>
+          <!--<div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>-->
         
-          <div id="userNotFound">Usuario no encontrado.</div>
-          <button id="btnRegisterRedirect">Registrar Usuario</button>
+          <!--<div id="userNotFound">Usuario no encontrado.</div>-->
+          <!--<button id="btnRegisterRedirect">Registrar Usuario</button>-->
         
           <!-- Tarjeta usuario con Atropos -->
-          <div id="userCard" class="atropos" tabindex="0" aria-label="Tarjeta de usuario NFC">
-            <h3 id="userName"></h3>
-            <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
-            <p><strong>ID:</strong> <span id="userId"></span></p>
-          </div>
         </div>
         
     </section>
 
+    <div class="card-container"></div>
 
 <!-- Atropos JS -->
 <!--<script src="https://unpkg.com/atropos"></script>-->

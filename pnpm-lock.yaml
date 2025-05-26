@@ -20,6 +20,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.6
         version: 4.1.6
+      wc-toast:
+        specifier: ^1.3.1
+        version: 1.3.1
     devDependencies:
       vite:
         specifier: ^6.2.0
@@ -627,6 +630,9 @@ packages:
       yaml:
         optional: true
 
+  wc-toast@1.3.1:
+    resolution: {integrity: sha512-losZzhPY6PyVbzTvslLGFnHJ5X0RtBVruGROBGii8gQx6mGXPTt477xC0oRNHR+O7eB1GlzoJw/sBCHB4LOSag==}
+
   ws@8.17.1:
     resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
     engines: {node: '>=10.0.0'}
@@ -1100,6 +1106,8 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.4.2
       lightningcss: 1.29.2
+
+  wc-toast@1.3.1: {}
 
   ws@8.17.1: {}
 
