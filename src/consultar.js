@@ -4,7 +4,109 @@ import atropos from "atropos";
 import 'atropos/css'
 
 let atroposInstance = null;
-let color = 'blue';
+let userData = null;
+let id = null;
+
+const colors = {
+    blue: 'blue',
+    red: 'red',
+    green: 'green',
+    yellow: 'yellow',
+    purple: 'purple',
+    pink: 'pink',
+    orange: 'orange',
+    indigo: 'indigo',
+    teal: 'teal',
+}
+const container = document.getElementById('color-picker');
+
+
+function createMenuColor() {
+
+    const collection = {
+        blue: 'from-blue-400 to-blue-600',
+        red: 'from-red-400 to-red-600',
+        green: 'from-green-400 to-green-600',
+        yellow: 'from-yellow-300 to-yellow-500',
+        purple: 'from-purple-400 to-purple-600',
+        pink: 'from-pink-400 to-pink-600',
+        orange: 'from-orange-400 to-orange-600',
+        indigo: 'from-indigo-400 to-indigo-600',
+        teal: 'from-teal-400 to-teal-600',
+      };
+    
+      let selectedColor = null;
+    
+      for (const [color, gradient] of Object.entries(collection)) {
+        const btn = document.createElement('button');
+        btn.className = `
+          w-8 h-8 rounded-full 
+          bg-gradient-to-br ${gradient} 
+          border-2 border-transparent 
+          transition-all duration-200
+          outline-none focus:outline-none
+        `;
+        btn.title = color;
+    
+        
+        btn.addEventListener('click', () => {
+          if (selectedColor) {
+            selectedColor.classList.remove('ring-2', 'ring-offset-2', 'ring-black');
+          }
+          btn.classList.add('ring-2', 'ring-offset-2', 'ring-black');
+          selectedColor = btn;
+        
+          // Puedes hacer algo con el color seleccionado aquí
+          console.log(`Color seleccionado: ${color}`);
+          console.log(userData, selectedColor.title, id);
+          const colorSet = selectedColor.title;
+          instanceCard(
+            userData,
+            colorSet,
+            id
+          )
+    
+        });
+        container.appendChild(btn);
+    }    
+}
+
+
+  /**
+   * 
+   * @param {import("./card").User} user 
+   * @param {string} colorSet
+   * @param {string} id
+   */
+function instanceCard(user, colorSet, id) {
+    const cardContainer = document.querySelector(".card-container");
+    const cardColor = `bg-${colorSet}-500/50`
+    const border = `border-${colorSet}-500/10`
+    const shadowColor = `shadow-${colorSet}-500/25`
+
+    cardContainer.innerHTML = createCard({
+        border,
+        shadowColor,
+        cardColor,
+        idCard: id,
+        user
+    });
+
+    if (atroposInstance) {
+        atroposInstance.destroy();
+    }
+
+    atroposInstance = atropos({
+        el: ".atropos",
+        rotateTouch: true,
+        rotateXMax: 20,
+        rotateYMax: 20,
+        rotateXFactor: 1,
+        rotateYFactor: 1,
+    });
+}
+
+let color = colors.teal;
 async function getTypeRead(id) {
     const response = await fetch('http://localhost:5000/get_type_read', {
         method: 'POST',
@@ -16,7 +118,6 @@ async function getTypeRead(id) {
         })
     })
     const data = await response.json()
-    console.log(data);
 }
 
 /**
@@ -25,7 +126,9 @@ async function getTypeRead(id) {
  */
 async function leerScaner() {
     try {
-        const response = await fetch('http://localhost:8080/interact_fake')
+        const loader = document.querySelector('.container-loader');
+        loader.classList.remove('ocultar');
+        const response = await fetch('http://localhost:8080/interact_try')
         const data = await response.json()
 
         const consulta = await fetch('http://localhost:5000/get_type_read', {
@@ -41,23 +144,31 @@ async function leerScaner() {
         const dataConsulta = await consulta.json()
         if (!dataConsulta.ok) {
             toast.error('Error al consultar el tipo de lectura');
+            loader.classList.add('ocultar');
             return
         }
 
+        loader.classList.add('ocultar');
+        id = data.id;
         const cardContainer = document.querySelector(".card-container");
         if (dataConsulta.type == 'user') {
+            createMenuColor();
             toast.success('Tipo de lectura: Usuario')
             const resp = await fetch(`http://localhost:5000/users/nfc/${data.id}`)
-            const user = await resp.json()
+            const { user, ok } = await resp.json()
             const cardColor = `bg-${color}-500/50`
             const border = `border-${color}-500/10`
             const shadowColor = `shadow-${color}-500/25`
 
+            user.carrera = "Ingenieria de Software"
+            user.color = color;
+            userData = user;
             const card = createCard({
                 border,
                 shadowColor,
                 cardColor,
-                idCard: data.id
+                idCard: data.id,
+                user
             })
             cardContainer.innerHTML = card; 
             atroposInstance = atropos({
@@ -86,7 +197,7 @@ async function leerScaner() {
         return dataConsulta;
     }
     catch (error) {
-        console.error('Error al leer el escáner:', error);
+        onsole.error('Error al leer el escáner:', error);
         toast.error('Error al leer el escáner');
         return null;
     }
@@ -97,9 +208,9 @@ const btnStartNFC = document.getElementById('btnStartNFC');
 
 btnStartNFC.addEventListener('click', async () => {
     console.log('Iniciando NFC');
+    container.innerHTML = '';
     btnStartNFC.disabled = true;
 
     const user = await leerScaner()
-    console.log(user);
     btnStartNFC.disabled = false;
 })

@@ -1,5 +1,31 @@
+/**
+ * @typedef user
+ * @property {string} id - The ID of the user.
+ * @property {string} nombre - The name of the user.
+ * @property {string} carrera - The email of the user.
+ */
 
-export function createCard({ border, shadowColor, cardColor, idCard }) {
+
+/**
+ * 
+ * @typedef Params
+ * @property {string} border - The border class for the card.
+ * @property {string} shadowColor - The shadow color class for the card.
+ * @property {string} cardColor - The background color class for the card.
+ * @property {string} idCard - The ID of the card to be displayed.
+ * @property {user} user - The user object containing user details.
+ * 
+ */
+
+
+
+/**
+ * 
+ * @param {Params} params
+ * @returns 
+ */
+export function createCard({ border, shadowColor, cardColor, idCard, user }) {
+    console.log(user, border, shadowColor, cardColor, idCard);
 
     return `
         <div class="cardUser">
@@ -27,17 +53,42 @@ export function createCard({ border, shadowColor, cardColor, idCard }) {
                                                             class="-rotate-12 md:w-auto row-[2/3] mb-8 md:mb-0 left-0 mx-auto md:mx-0 h-32 md:h-[40%] relative flex justify-center w-full md:block bottom-0 md:left-[25%] md:bottom-[20%] md:absolute">
                                                             </div>
                                                         <div
-                                                            class="z-10 grid w-full h-auto md:h-full pt-5 md:pt-0 grid-rows-[1fr_auto] md:grid-rows-2">
-                                                            <div class="grid md:grid-cols-2">
+                                                            class="z-10 grid w-full h-auto md:h-full pt-5 md:pt-0 grid-rows-2">
+                                                            <div class="grid md:grid-cols-2 m-4">
                                                                 <div class="h-max">
+                                                                    <div class="flex items-center justify-center md:justify-start gap-4 p-5 flex-col md:flex-row">
+                                                                        <img src="/design.png" class="w-20 mx-auto md:mx-0">
+                                                                        
+                                                                        <img class="w-14 h-14 p-1 rounded-full ring-2 ring-white " src="https://api.dicebear.com/9.x/big-smile/svg?seed=${user.nombre}" alt="Bordered avatar">
+
+                                                                    </div>
+                                                                    <div class="flex text-white  flex-col md:justify-start p-5 ">
+                                                                        <p class="text-white">
+                                                                            <span class="font-bold">
+                                                                                Nombre:  
+                                                                            </span> 
+                                                                            <span class="font-medium">
+                                                                                ${user.nombre}
+                                                                            </span>
+                                                                        <p/>
+                                                                        <p class="text-white">
+                                                                            <span class="font-bold">
+                                                                                Carrera:  
+                                                                            </span> 
+                                                                            <span class="font-medium">
+                                                                                ${user.carrera}
+                                                                            </span>
+                                                                        <p/>
+
+                                                                    </div>
+
                                                                     <div
-                                                                        class="flex justify-start gap-4 text-white gap-y-2 p-5 flex-col md:items-start md:flex-row md:p-6 items-center text-center md:text-left">
+                                                                        class="flex justify-start gap-4 text-white p-5 flex-col md:items-start md:flex-row md:p-6 items-center text-center md:text-left">
                                                                         <div>
-                                                                            <p class="text-xl font-bold"><span
-                                                                                    class="opacity-75 text-midu-primary">#</span>romanCard
+                                                                            <p class="text-xl text-white font-bold"><span
+                                                                                    class="opacity-75 text-white">#</span>romanCard
                                                                             </p><span
-                                                                                class="block text-sm font-normal w-max text-white/60">Evento
-                                                                                de Programación Gratuito</span>
+                                                                                class="block text-sm font-normal w-max text-white/60">Tecnologia para el acceso a las plataformas academicas</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -46,8 +97,7 @@ export function createCard({ border, shadowColor, cardColor, idCard }) {
                                                                     <img src="/uas.png" class="w-15">
                                                                     <time datetime="${new Date().toISOString()}"
                                                                         class="block mt-2 ml-auto font-bold text-white md:ml-0 text-center mr-auto md:mr-0 md:text-right">${new Date().toDateString()}<span
-                                                                            class="block text-sm font-normal text-white/60 animate-blurred-fade-in">${new Intl.DateTimeFormat('en-GB', {
-                                                                                timeZone: 'UTC',
+                                                                            class="block text-sm font-normal text-white/60 animate-blurred-fade-in">${new Intl.DateTimeFormat('es-MX', {
                                                                                 hour12: false,
                                                                                 hour: '2-digit',
                                                                                 minute: '2-digit',
@@ -61,28 +111,6 @@ export function createCard({ border, shadowColor, cardColor, idCard }) {
                                                             <div
                                                                 class="grid self-end gap-4 grid-cols-1 md:grid-cols-[1fr_auto] md:grid-rows-[auto_auto] md:gap-0">
                                                                 
-                                                                </div><a href="https://www.twitch.tv/midudev"
-                                                                    target="_blank" rel="nofollow"
-                                                                    class="flex items-center justify-self-end justify-end gap-2 p-5 font-bold text-white w-max hover:text-[#b9a3e3] transition-colors pt-0 text-md md:text-base mx-auto md:mx-0 md:py-0 md:h-max md:row-[1/2] md:col-[1/3]"><svg
-                                                                        width="2400" height="2800"
-                                                                        viewBox="0 0 2400 2800" fill="none"
-                                                                        class="h-auto w-3.5"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clip0_33_542)">
-                                                                            <path
-                                                                                d="M500 0L0 500V2300H600V2800L1100 2300H1500L2400 1400V0H500ZM2200 1300L1800 1700H1400L1050 2050V1700H600V200H2200V1300Z"
-                                                                                fill="currentColor"></path>
-                                                                            <path
-                                                                                d="M1700 550H1900V1150H1700V550ZM1150 550H1350V1150H1150V550Z"
-                                                                                fill="currentColor"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath id="clip0_33_542">
-                                                                                <rect width="2400" height="2800"
-                                                                                    fill="currentColor"></rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>twitch.tv/midudev</a>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,119 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lectura NFC - Consulta Usuario</title>
-<link rel="stylesheet" href="/src/global.css">
-<!-- Atropos CSS -->
-<link href="https://unpkg.com/atropos/css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lectura NFC</title>
+    <link rel="stylesheet" href="/src/global.css">
+    <!-- Atropos CSS -->
+    <link href="https://unpkg.com/atropos/css" rel="stylesheet" />
 
-<style>
-  /* Fondo verde para toda la página */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+    <style>
+        /* Fondo verde para toda la página */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  /* Recuadro blanco centrado */
-  .container {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 2rem 3rem;
-    width: 350px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
-  }
+        /* Recuadro blanco centrado */
+        .container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 2rem 3rem;
+            width: 50rem;
+            height: 20rem;
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
 
-  h1 {
-    margin-bottom: 1.5rem;
-    color: #107144;
-  }
+        h1 {
+            color: #107144;
+            margin: .5rem;
+        }
 
-  button {
-    background-color: #19C778;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-  button:hover {
-    background-color: #107144;
-  }
+        .btnAction {
+            background-color: #19C778;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
 
-  #loading {
-    margin: 1.5rem auto;
-    display: none;
-  }
-  /* Animación de pulso para espera lectura NFC */
-  .pulse {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #19C778;
-    animation: pulseAnimation 1.5s infinite ease-in-out;
-    margin: 0 auto;
-  }
-  @keyframes pulseAnimation {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.3);
-      opacity: 0.5;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
+        .btnAction:hover {
+            background-color: #107144;
+        }
 
-  #userNotFound {
-    margin-top: 1rem;
-    color: #d32f2f; /* rojo oscuro para error */
-    display: none;
-    font-weight: bold;
-  }
+        .btnAction:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
 
-  #btnRegisterRedirect {
-    margin-top: 0.5rem;
-    display: none;
-    background-color: #4ecb89;
-    width: 100%;
-  }
-  #btnRegisterRedirect:hover {
-    background-color: #107144;
-  }
+        #loading {
+            margin: 1.5rem auto;
+            display: none;
+        }
 
-  /* Tarjeta usuario con Atropos */
-  #userCard {
-    max-width: 320px;
-    margin: 2rem auto 0 auto;
-    display: none;
-    border: 1px solid #19C778;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    background-color: #d7f2e0; /* verde muy claro */
-    color: #107144;
-    box-shadow: 0 5px 15px rgba(25, 199, 120, 0.3);
-    text-align: left;
-  }
-  #userCard h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-</style>
+        /* Animación de pulso para espera lectura NFC */
+        .pulse {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #19C778;
+            animation: pulseAnimation 1.5s infinite ease-in-out;
+            margin: 0 auto;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #userNotFound {
+            margin-top: 1rem;
+            color: #d32f2f;
+            /* rojo oscuro para error */
+            display: none;
+            font-weight: bold;
+        }
+
+        #btnRegisterRedirect {
+            margin-top: 0.5rem;
+            display: none;
+            background-color: #4ecb89;
+            width: 100%;
+        }
+
+        #btnRegisterRedirect:hover {
+            background-color: #107144;
+        }
+
+        /* Tarjeta usuario con Atropos */
+        #userCard {
+            max-width: 320px;
+            margin: 2rem auto 0 auto;
+            display: none;
+            border: 1px solid #19C778;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            background-color: #d7f2e0;
+            /* verde muy claro */
+            color: #107144;
+            box-shadow: 0 5px 15px rgba(25, 199, 120, 0.3);
+            text-align: left;
+        }
+
+        #userCard h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 
 </head>
+
 <body>
+<!-- bg-pink-500/50 border-pink-500/10 shadow-pink-500/25 -->
+<!-- bg-blue-500/50 border-blue-500/10 shadow-blue-500/25 -->
+<!-- bg-green-500/50 border-green-500/10 shadow-green-500/25 -->
+<!-- bg-red-500/50 border-red-500/10 shadow-red-500/25 -->
+<!-- bg-yellow-500/50 border-yellow-500/10 shadow-yellow-500/25 -->
+<!-- bg-purple-500/50 border-purple-500/10 shadow-purple-500/25 -->
+<!-- bg-orange-500/50 border-orange-500/10 shadow-orange-500/25 -->
+<!-- bg-indigo-500/50 border-indigo-500/10 shadow-indigo-500/25 -->
+<!-- bg-teal-500/50 border-teal-500/10 shadow-teal-500/25 -->
+<!-- bg-lime-500/50 border-lime-500/10 shadow-lime-500/25 -->
+ 
+
     <wc-toast></wc-toast>
 
-<nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
+    <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
         <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
         <div
             style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center; margin: auto;">
@@ -127,129 +155,46 @@
                     style="text-decoration: none; ; font-weight: 500;">Préstamo</a>
                 <a href="/pages/consultar/" class="nav-link" style="text-decoration: none;; font-weight: 500;">Consultar
                     usuario NFC</a>
-                <a href="/pages/biblioteca/" class="nav-link"
-                    style="text-decoration: none; font-weight: 500;">Consultar Libros</a>
+                <a href="/pages/biblioteca/" class="nav-link" style="text-decoration: none; font-weight: 500;">Consultar
+                    Libros</a>
             </div>
         </div>
     </nav>
-     
 
-    <section class="flex flex-col items-center justify-center m-4 ">
-        <div class="container">
-          <h1>Consulta Usuario NFC</h1>
-          <button id="btnStartNFC">Leer Tag NFC</button>
-        
-          <!-- Animación de espera lectura -->
-          <!--<div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>-->
-        
-          <!--<div id="userNotFound">Usuario no encontrado.</div>-->
-          <!--<button id="btnRegisterRedirect">Registrar Usuario</button>-->
-        
-          <!-- Tarjeta usuario con Atropos -->
+
+    <section class="flex flex-col items-center justify-center">
+        <div class="">
+            <h1>Consulta por NFC</h1>
+            <button id="btnStartNFC" class="btnAction">Leer por escaner NFC</button>
+
+            <!--<div id="loading"><div class="pulse" aria-label="Esperando lectura NFC"></div></div>-->
+            
+            <!--<div id="userNotFound">Usuario no encontrado.</div>-->
+            <!--<button id="btnRegisterRedirect">Registrar Usuario</button>-->
+            
+            <!-- Tarjeta usuario con Atropos -->
         </div>
+
+        <div id="color-picker" class="flex gap-4 p-4">
+  <!-- Buttons will be inserted here by JS -->
+</div>
+
         
+        <div class='container-loader ocultar'>
+            <div class="loader green"></div>
+            <p class='paragraph'>Esperando al escaner....</p>
+        </div>
+
+        <div class="card-container"></div>
     </section>
 
-    <div class="card-container"></div>
 
-<!-- Atropos JS -->
-<!--<script src="https://unpkg.com/atropos"></script>-->
-<script type="module" src="/src/consultar.js"></script>
-<script>
-//  const atroposUser = Atropos({
-//    el: '#userCard',
-//    shadow: false,
-//    highlight: false
-//  });
-
-//  const btnStartNFC = document.getElementById('btnStartNFC');
-//  const loading = document.getElementById('loading');
-//  const userCard = document.getElementById('userCard');
-//  const userName = document.getElementById('userName');
-//  const userUsername = document.getElementById('userUsername');
-//  const userId = document.getElementById('userId');
-//  const userNotFound = document.getElementById('userNotFound');
-//  const btnRegisterRedirect = document.getElementById('btnRegisterRedirect');
-
-//  let nfcReader;
-
-//  btnStartNFC.addEventListener('click', async () => {
-//    if (!('NDEFReader' in window)) {
-//      alert('Tu navegador no soporta Web NFC');
-//      return;
-//    }
-
-//    // Limpiar y mostrar animación
-//    userCard.style.display = 'none';
-//    userNotFound.style.display = 'none';
-//    btnRegisterRedirect.style.display = 'none';
-//    loading.style.display = 'block';
-
-//    try {
-//      nfcReader = new NDEFReader();
-//      await nfcReader.scan();
-
-//      nfcReader.onreadingerror = () => {
-//        loading.style.display = 'none';
-//        alert('Error leyendo NFC, intenta de nuevo.');
-//      };
-
-//      nfcReader.onreading = event => {
-//        loading.style.display = 'none';
-
-//        const message = event.message;
-//        let uid = null;
-
-//        for (const record of message.records) {
-//          if (record.recordType === "text") {
-//            const textDecoder = new TextDecoder(record.encoding || "utf-8");
-//            uid = textDecoder.decode(record.data);
-//            break;
-//          }
-//        }
-
-//        if (!uid) {
-//          alert('No se pudo leer el UID del tag NFC.');
-//          return;
-//        }
-
-//        consultarUsuarioPorUID(uid);
-//      };
-//    } catch (error) {
-//      loading.style.display = 'none';
-//      alert('Error al iniciar la lectura NFC: ' + error);
-//    }
-//  });
-
-//  function consultarUsuarioPorUID(uid) {
-//    fetch(`/api/checkUser?uid=${encodeURIComponent(uid)}`)
-//      .then(res => res.json())
-//      .then(data => {
-//        if (data.exists) {
-//          userName.textContent = data.user.name;
-//          userUsername.textContent = data.user.username;
-//          userId.textContent = data.user.id;
-//          userCard.style.display = 'block';
-//          userNotFound.style.display = 'none';
-//          btnRegisterRedirect.style.display = 'none';
-//        } else {
-//          userCard.style.display = 'none';
-//          userNotFound.style.display = 'block';
-//          btnRegisterRedirect.style.display = 'inline-block';
-//        }
-//      })
-//      .catch(err => {
-//        alert('Error al consultar el usuario: ' + err);
-//        userCard.style.display = 'none';
-//        userNotFound.style.display = 'none';
-//        btnRegisterRedirect.style.display = 'none';
-//      });
-//  }
-
-//  btnRegisterRedirect.addEventListener('click', () => {
-//    window.location.href = '/registrar-usuario.html';
-//  });
-</script>
+    <!-- Atropos JS -->
+    <!--<script src="https://unpkg.com/atropos"></script>-->
+    <script type="module" src="/src/consultar.js"></script>
+    <script>
+    </script>
 
 </body>
+
 </html>
