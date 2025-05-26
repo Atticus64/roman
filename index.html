@@ -7,68 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/global.css" />
     <style>
-        body {
-            margin: 0;
-            background-color: #F9FAFC;
-            /* Fondo claro */
-            color: #333333;
-            /* Texto gris oscuro para buen contraste */
-            font-family: 'Segoe UI', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-
-        .section-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .section-content {
-            backdrop-filter: blur(8px);
-            background-color: rgba(255, 255, 255, 0.8);
-            /* Fondo semi-transparente blanco para secciones */
-            padding: 4rem;
-            border-radius: 1rem;
-            margin: auto;
-            max-width: 960px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Botón verde personalizado */
-        .btn-verde {
-            background-color: #19C778;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease-in-out;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-verde:hover {
-            filter: brightness(110%);
-        }
-
-        /* Ajuste para textos en las secciones para que tengan mejor contraste */
-        p,
-        li {
-            color: #444444;
-        }
-
-        footer {
-            background-color: #e1e5ea;
-            color: #555555;
-        }
-
         .hero {
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 90vh;
-            padding: 4rem 2rem;
             background: linear-gradient(to right, #f9fafc, #e9fdf3);
         }
 
@@ -76,8 +19,6 @@
             display: flex;
             flex-direction: row;
             align-content: center;
-            max-width: 1200px;
-            width: 100%;
             gap: 3rem;
             align-items: center;
             justify-items: space-between;
@@ -113,27 +54,40 @@
             border-radius: 1rem;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
         }
+
+        .logo {
+            width: 5rem;
+            margin-left: 0.5rem;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: #19C778;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Menú superior de navegación -->
-    <nav style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">
+    <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
+        <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
         <div
-            style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
-            <a href="/"
-                style="background-color: white; color: #19C778; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; text-decoration: none;">
-                Biblioteca NFC
+            style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center; margin: auto;">
+            <a href="/" class="text-black font-bold text-2xl flex flex-row">
+                <img src="/roman.webp" alt="logo roman card" class="logo to-black">
             </a>
             <div style="display: flex; gap: 1.5rem;">
-                <a href="/pages/register/" style="text-decoration: none; color: white; font-weight: 500;">Registrar
+                <a href="/pages/register/" class="nav-link" style="text-decoration: none; ; font-weight: 500;">Registrar
                     Usuario</a>
-                <a href="/pages/prestamo/" style="text-decoration: none; color: white; font-weight: 500;">Préstamo</a>
-                <a href="/pages/consultar/" style="text-decoration: none; color: white; font-weight: 500;">Consultar
+                <a href="/pages/prestamo/" class="nav-link"
+                    style="text-decoration: none; ; font-weight: 500;">Préstamo</a>
+                <a href="/pages/consultar/" class="nav-link" style="text-decoration: none;; font-weight: 500;">Consultar
                     usuario NFC</a>
-                <a href="/pages/consultar_libros/"
-                    style="text-decoration: none; color: white; font-weight: 500;">Consultar Libros</a>
+                <a href="/pages/biblioteca/" class="nav-link"
+                    style="text-decoration: none; font-weight: 500;">Consultar Libros</a>
             </div>
         </div>
     </nav>
@@ -148,7 +102,7 @@
                     Card</h1>
                 <h2 class="title">Una iniciativa tecnología de Innovación</h2>
                 <p class="subtitle">Automatizando el futuro de las bibliotecas con tecnología inteligente</p>
-                <button class="btn-verde" onclick="location.href='roman/pages/biblioteca/index.html'">Explorar
+                <button class="btn-verde" onclick="location.href='/pages/biblioteca/'">Explorar
                     Libros</button>
             </div>
             <div class="image-section">
@@ -204,7 +158,7 @@
                     <p>Programador NFC</p>
                 </div>
                 <div>
-                    <img src="edurdo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
+                    <img src="eduardo.png" alt="Eduardo" class="w-24 h-24 mx-auto mb-3 rounded-full" />
                     <h4 class="font-semibold">Raul H.</h4>
                     <p>Documentación</p>
                 </div>

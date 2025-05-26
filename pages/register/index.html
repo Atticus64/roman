@@ -4,21 +4,10 @@
   <meta charset="UTF-8" />
   <title>Registro de Usuario - Biblioteca NFC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/global.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #19C778; /* verde Nuxt */
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
 
     h1 {
-      color: white;
       margin-bottom: 1rem;
     }
 
@@ -103,24 +92,50 @@ form:hover {
 </head>
 <body>
 
-  <h1>Registro de Usuario</h1>
+        <!-- Menú superior de navegación -->
+    <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
+        <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
+        <div
+            style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center; margin: auto;">
+            <a href="/" class="text-black font-bold text-2xl flex flex-row">
+                <img src="/roman.webp" alt="logo roman card" class="logo to-black">
+            </a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/pages/register/" class="nav-link" style="text-decoration: none; ; font-weight: 500;">Registrar
+                    Usuario</a>
+                <a href="/pages/prestamo/" class="nav-link"
+                    style="text-decoration: none; ; font-weight: 500;">Préstamo</a>
+                <a href="/pages/consultar/" class="nav-link" style="text-decoration: none;; font-weight: 500;">Consultar
+                    usuario NFC</a>
+                <a href="/pages/biblioteca/" class="nav-link"
+                    style="text-decoration: none; font-weight: 500;">Consultar Libros</a>
+            </div>
+        </div>
+    </nav>
 
-  <form id="registroForm">
-    <div>
-      <label for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" name="nombre" required />
-    </div>
-    <div>
-      <label for="telefono">Número de Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" required />
-    </div>
-    <div>
-      <label for="cuenta">Número de Cuenta (opcional):</label>
-      <input type="text" id="cuenta" name="cuenta" />
-    </div>
-    <button type="submit">Registrar Usuario</button>
-    <div id="mensaje" class="mensaje"></div>
-  </form>
+    <section class="flex flex-col items-center justify-center m-5">
+        
+          <h1>Registro de Usuario</h1>
+        
+        
+          <form id="registroForm">
+            <div>
+              <label for="nombre">Nombre completo:</label>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
+            <div>
+              <label for="telefono">Número de Teléfono:</label>
+              <input type="tel" id="telefono" name="telefono" required />
+            </div>
+            <div>
+              <label for="cuenta">Número de Cuenta (opcional):</label>
+              <input type="text" id="cuenta" name="cuenta" />
+            </div>
+            <button type="submit">Registrar Usuario</button>
+            <div id="mensaje" class="mensaje"></div>
+          </form>
+
+    </section>
 
   <script>
     const form = document.getElementById("registroForm");

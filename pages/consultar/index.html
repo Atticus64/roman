@@ -4,21 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lectura NFC - Consulta Usuario</title>
-
+<link rel="stylesheet" href="/src/global.css">
 <!-- Atropos CSS -->
 <link href="https://unpkg.com/atropos/css" rel="stylesheet" />
 
 <style>
   /* Fondo verde para toda la página */
   body {
-    background-color: #19C778; 
-    color: #19C778; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   /* Recuadro blanco centrado */
@@ -118,6 +111,27 @@
 
 </head>
 <body>
+
+<nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
+        <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
+        <div
+            style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center; margin: auto;">
+            <a href="/" class="text-black font-bold text-2xl flex flex-row">
+                <img src="/roman.webp" alt="logo roman card" class="logo to-black">
+            </a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/pages/register/" class="nav-link" style="text-decoration: none; ; font-weight: 500;">Registrar
+                    Usuario</a>
+                <a href="/pages/prestamo/" class="nav-link"
+                    style="text-decoration: none; ; font-weight: 500;">Préstamo</a>
+                <a href="/pages/consultar/" class="nav-link" style="text-decoration: none;; font-weight: 500;">Consultar
+                    usuario NFC</a>
+                <a href="/pages/biblioteca/" class="nav-link"
+                    style="text-decoration: none; font-weight: 500;">Consultar Libros</a>
+            </div>
+        </div>
+    </nav>
+     
 
 <div class="container">
   <h1>Consulta Usuario NFC</h1>
