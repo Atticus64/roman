@@ -1,98 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Registro de Usuario - Biblioteca NFC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/src/global.css" />
-  <style>
+    <meta charset="UTF-8" />
+    <title>Registro de Usuario - Biblioteca NFC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/global.css" />
+    <style>
+        h1 {
+            margin-bottom: 1rem;
+        }
 
-    h1 {
-      margin-bottom: 1rem;
-    }
+        form {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            color: #333;
 
-    form {
-  background-color: white;
-  padding: 2rem 3rem;
-  border-radius: 1rem;
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  color: #333;
+            /* Efecto 3D con sombras */
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                /* sombra principal */
+                0 10px 20px rgba(0, 0, 0, 0.15),
+                /* sombra más difusa */
+                inset 0 0 0 1px #19C778;
+            /* borde verde sutil dentro */
+            transition: box-shadow 0.3s ease;
+        }
 
-  /* Efecto 3D con sombras */
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),  /* sombra principal */
-    0 10px 20px rgba(0, 0, 0, 0.15), /* sombra más difusa */
-    inset 0 0 0 1px #19C778; /* borde verde sutil dentro */
-  transition: box-shadow 0.3s ease;
-}
-
-form:hover {
-  box-shadow:
-    0 6px 10px rgba(0, 0, 0, 0.15),
-    0 12px 30px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1.5px #19C778;
-}
+        form:hover {
+            box-shadow:
+                0 6px 10px rgba(0, 0, 0, 0.15),
+                0 12px 30px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1.5px #19C778;
+        }
 
 
-    label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #19C778;
-      display: block;
-    }
+        label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #19C778;
+            display: block;
+        }
 
-    input {
-      width: 100%;
-      padding: 0.6rem;
-      border-radius: 0.5rem;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      outline-color: #19C778;
-      box-sizing: border-box;
-    }
+        input {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline-color: #19C778;
+            box-sizing: border-box;
+        }
 
-    button {
-      background-color: #19C778;
-      color: white;
-      padding: 0.75rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-      margin-top: 0.5rem;
-    }
+        button {
+            background-color: #19C778;
+            color: white;
+            padding: 0.75rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            margin-top: 0.5rem;
+        }
 
-    button:hover {
-      filter: brightness(110%);
-    }
+        button:hover {
+            filter: brightness(110%);
+        }
 
-    .mensaje {
-      margin-top: 1rem;
-      padding: 0.75rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      display: none;
-    }
+        .mensaje {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: none;
+        }
 
-    .exito {
-      background-color: #d1f5e1;
-      color: #067d42;
-    }
+        .exito {
+            background-color: #d1f5e1;
+            color: #067d42;
+        }
 
-    .error {
-      background-color: #ffd1d1;
-      color: #b00020;
-    }
-  </style>
+        .error {
+            background-color: #ffd1d1;
+            color: #b00020;
+        }
+    </style>
 </head>
+
 <body>
 
-        <!-- Menú superior de navegación -->
+    <wc-toast></wc-toast>
+    <!-- Menú superior de navegación -->
     <nav class="bg-default/75 backdrop-blur p-2 border-b border-green-600 h-(--ui-header-height) sticky top-0 z-50">
         <!--<nav class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50" style="background-color: #19C778; position: sticky; top: 0; z-index: 1000;">-->
         <div
@@ -107,74 +112,61 @@ form:hover {
                     style="text-decoration: none; ; font-weight: 500;">Préstamo</a>
                 <a href="/pages/consultar/" class="nav-link" style="text-decoration: none;; font-weight: 500;">Consultar
                     usuario NFC</a>
-                <a href="/pages/biblioteca/" class="nav-link"
-                    style="text-decoration: none; font-weight: 500;">Consultar Libros</a>
+                <a href="/pages/biblioteca/" class="nav-link" style="text-decoration: none; font-weight: 500;">Consultar
+                    Libros</a>
             </div>
         </div>
     </nav>
 
     <section class="flex flex-col items-center justify-center m-5">
-        
-          <h1>Registro de Usuario</h1>
-        
-        
-          <form id="registroForm">
+
+        <h1>Registro de Usuario</h1>
+
+
+        <form id="registroForm">
             <div>
-              <label for="nombre">Nombre completo:</label>
-              <input type="text" id="nombre" name="nombre" required />
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required />
             </div>
             <div>
-              <label for="telefono">Número de Teléfono:</label>
-              <input type="tel" id="telefono" name="telefono" required />
+                <label for="telefono">Número de Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required />
             </div>
             <div>
-              <label for="cuenta">Número de Cuenta (opcional):</label>
-              <input type="text" id="cuenta" name="cuenta" />
+                <label for="correo">Email:</label>
+                <input type="email" id="correo" name="correo" required />
             </div>
+            <div>
+                <label for="tipo_usuario">Tipo Usuario:</label>
+                <select required id="tipo_usuario" name="tipo_usuario" class="border rounded p-2">
+                    <option disabled selected>Cargando...</option>
+                </select>
+            </div>
+            <div>
+                <label for="carrera">Carrera:</label>
+                <select id="carrera" name="carrera" class="border rounded p-2">
+                    <option disabled selected>Cargando...</option>
+                </select>
+            </div>
+
+            <button type="button" class="escaneoCuenta">Escanear Tarjeta</button>
+            <p class="msg ocultar"></p>
+            <div class='container-loader ocultar'>
+                <div class="loader green"></div>
+                <p class='paragraph'>Esperando al escaner....</p>
+            </div>
+
             <button type="submit">Registrar Usuario</button>
             <div id="mensaje" class="mensaje"></div>
-          </form>
+        </form>
 
     </section>
 
-  <script>
-    const form = document.getElementById("registroForm");
-    const mensaje = document.getElementById("mensaje");
+    <script type="module" src="/src/registrar.js"></script>
+   </script>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const data = {
-        nombre: form.nombre.value.trim(),
-        telefono: form.telefono.value.trim(),
-        cuenta: form.cuenta.value.trim()
-      };
-
-      try {
-        // Cambia la URL por la de tu backend
-        const response = await fetch("/api/registrar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-
-        const resultado = await response.json();
-
-        if (response.ok && resultado.exito) {
-          mensaje.textContent = "✅ Usuario registrado exitosamente.";
-          mensaje.className = "mensaje exito";
-        } else {
-          mensaje.textContent = "❌ No se pudo registrar al usuario.";
-          mensaje.className = "mensaje error";
-        }
-      } catch (error) {
-        mensaje.textContent = "⚠️ Error al conectar con el servidor.";
-        mensaje.className = "mensaje error";
-      }
-
-      mensaje.style.display = "block";
-    });
-  </script>
+    </script>
 
 </body>
+
 </html>

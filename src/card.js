@@ -3,6 +3,7 @@
  * @property {string} id - The ID of the user.
  * @property {string} nombre - The name of the user.
  * @property {string} carrera - The email of the user.
+ * @property {string} tipo_usuario - The email of the user.
  */
 
 
@@ -60,9 +61,10 @@ export function createCard({ border, shadowColor, cardColor, idCard, user }) {
                                                                         <img src="/design.png" class="w-20 mx-auto md:mx-0">
                                                                         
                                                                         <img class="w-14 h-14 p-1 rounded-full ring-2 ring-white " src="https://api.dicebear.com/9.x/big-smile/svg?seed=${user.nombre}" alt="Bordered avatar">
+                                                                        <span class="block px-2 py-1 mt-1 text-xs font-medium rounded w-max text-white/80 bg-white/10">${user.tipo_usuario}</span>
 
                                                                     </div>
-                                                                    <div class="flex text-white  flex-col md:justify-start p-5 ">
+                                                                    <div class="flex text-white  flex-col md:justify-start px-4 ">
                                                                         <p class="text-white">
                                                                             <span class="font-bold">
                                                                                 Nombre:  
@@ -76,7 +78,7 @@ export function createCard({ border, shadowColor, cardColor, idCard, user }) {
                                                                                 Carrera:  
                                                                             </span> 
                                                                             <span class="font-medium">
-                                                                                ${user.carrera}
+                                                                                ${user.carrera ?? "No aplica"}
                                                                             </span>
                                                                         <p/>
 

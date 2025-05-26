@@ -128,7 +128,7 @@ async function leerScaner() {
     try {
         const loader = document.querySelector('.container-loader');
         loader.classList.remove('ocultar');
-        const response = await fetch('http://localhost:8080/interact_try')
+        const response = await fetch('http://localhost:8080/interact')
         const data = await response.json()
 
         const consulta = await fetch('http://localhost:5000/get_type_read', {
@@ -160,7 +160,6 @@ async function leerScaner() {
             const border = `border-${color}-500/10`
             const shadowColor = `shadow-${color}-500/25`
 
-            user.carrera = "Ingenieria de Software"
             user.color = color;
             userData = user;
             const card = createCard({
@@ -197,7 +196,7 @@ async function leerScaner() {
         return dataConsulta;
     }
     catch (error) {
-        onsole.error('Error al leer el escáner:', error);
+        console.error('Error al leer el escáner:', error);
         toast.error('Error al leer el escáner');
         return null;
     }
