@@ -7,6 +7,17 @@ const userBtn = document.getElementById('btnRegisterUser');
 let id_nfc_ejemplar = null;
 let id_nfc_usuario = null;
 
+const btnRestart = document.querySelector('.restart')
+
+
+btnRestart.addEventListener('click', () => {
+    id_nfc_ejemplar = null; // Reiniciar el ID del libro
+    id_nfc_usuario = null; // Reiniciar el ID del usuario
+    document.querySelector('.msgLibro').textContent = '';
+    document.querySelector('.msgUser').textContent = '';
+    toast.success('Datos reiniciados');
+})
+
 async function realizarPrestamo(id_nfc_usuario, id_nfc_ejemplar) {
     const response = await fetch('http://localhost:5000/prestamo', {
         method: 'POST',
@@ -29,6 +40,8 @@ async function realizarPrestamo(id_nfc_usuario, id_nfc_ejemplar) {
 }
 
 async function leerDato() {
+    const msgBook = document.querySelector('.msgLibro');
+    const msgUser = document.querySelector('.msgUser');
 
     //const resp = await fetch('http://localhost:8080/interact');
     const resp = await fetch('http://localhost:8080/interact');
@@ -53,11 +66,12 @@ async function leerDato() {
         return;
     }
 
-    console.log(dataConsulta)
     if (dataConsulta.type === 'user') {
         id_nfc_usuario = data.id;
+        msgUser.textContent = `ID Usuario: ${data.id}`;
     } else if (dataConsulta.type === 'book') {
         id_nfc_ejemplar = data.id;
+        msgBook.textContent = `ID Libro: ${data.id}`;
     } else {
         toast.error('Tipo de lectura no reconocido');
         return;

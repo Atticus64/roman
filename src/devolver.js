@@ -107,18 +107,6 @@ function instanceCard(user, colorSet, id) {
 }
 
 let color = colors.teal;
-async function getTypeRead(id) {
-    const response = await fetch('http://localhost:5000/get_type_read', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id
-        })
-    })
-    const data = await response.json()
-}
 
 /**
  * 
@@ -131,7 +119,6 @@ async function leerScaner() {
         const response = await fetch('http://localhost:8080/interact')
         const data = await response.json()
 
-        console.log(data)
         const consulta = await fetch('http://localhost:5000/get_type_read', {
             method: 'POST',
             headers: {
@@ -149,40 +136,30 @@ async function leerScaner() {
             return
         }
 
-        loader.classList.add('ocultar');
         id = data.id;
         const cardContainer = document.querySelector(".card-container");
         if (dataConsulta.type == 'user') {
-            createMenuColor();
-            toast.success('Tipo de lectura: Usuario')
-            const resp = await fetch(`http://localhost:5000/users/nfc/${data.id}`)
-            const { user, ok } = await resp.json()
-            const cardColor = `bg-${color}-500/50`
-            const border = `border-${color}-500/10`
-            const shadowColor = `shadow-${color}-500/25`
-
-            user.color = color;
-            userData = user;
-            const card = createCard({
-                border,
-                shadowColor,
-                cardColor,
-                idCard: data.id,
-                user
-            })
-            cardContainer.innerHTML = card; 
-            atroposInstance = atropos({
-                el: ".atropos",
-                rotateTouch: true,
-                rotateXMax: 20,
-                rotateYMax: 20,
-                rotateXFactor: 1,
-                rotateYFactor: 1,
-            });
-
+            toast.error('No es un libro lo que escaneaste')
+            loader.classList.add('ocultar');
         } else if (dataConsulta.type == 'book') {
-            const resp = await fetch(`http://localhost:5000/books/nfc/${data.id}`)
-            const { book: libro } = await resp.json()
+            const response = await fetch(`http://localhost:5000/books/nfc/${data.id}`)
+            const resp = await fetch(`http://localhost:5000/prestamo/devolver`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id_nfc_ejemplar: data.id
+                })
+            }) 
+            const { book: libro } = await response.json();
+            const devolver = await resp.json()
+
+            if (!devolver.ok) {
+                toast.error(devolver.msg ?? 'Error al devolver el libro');
+            }  else {
+                toast.success('Libro devuelto correctamente');
+            }
             cardContainer.innerHTML = `
             <div class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-md max-w-md mx-auto">
                 <h2>${libro.nombre}</h2>
@@ -192,7 +169,7 @@ async function leerScaner() {
                 <img src="${libro.portada_url}" alt="${libro.nombre}" class="w-[15rem]" style="border-radius: 8px; margin-top: 10px;">
             </div>
           `;
-            toast.success('Tipo de lectura: Libro');
+            loader.classList.add('ocultar');
         }
         return dataConsulta;
     }

@@ -3,7 +3,6 @@ import './style.css'
 
 import 'atropos/css'
 
-import { io } from "socket.io-client";
 import { createCard } from './card';
 
 const socket = io("http://localhost:5000"); // Asegúrate que es el mismo puerto del backend
@@ -87,37 +86,3 @@ btn.addEventListener("click", () => {
         rotateYFactor: 1,
     });
 })
-
-socket.on("message", (msg) => {
-    console.log(msg)
-
-    if (!msg.id) return;
-    const test = `
-    <div class="bg-pink-400 border-blue-200/10 shadow-pink-400">`
-    const cardColor = `bg-${color}-500/50`
-    const border = `border-${color}-500/10`
-    const shadowColor = `shadow-${color}-500/25`
-    const cardContainer = document.querySelector(".card-container");
-    id = msg.id;
-
-    cardContainer.innerHTML = createCard({
-        cardColor,
-        border,
-        shadowColor,
-        idCard: msg.id,
-    });
-
-    atroposInstance = atropos({
-        el: ".atropos",
-        rotateTouch: true,
-        rotateXMax: 20,
-        rotateYMax: 20,
-        rotateXFactor: 1,
-        rotateYFactor: 1,
-    });
-
-});
-
-socket.on("disconnect", () => {
-    console.log("Desconectado del servidor");
-});
